@@ -53,3 +53,16 @@ app.post('/add', async (req,res) => {
         res.status(400).json({ error: err.message});
     }
 });
+
+// db.getCollection('squads').find(
+//     {},
+//     { squadName: 1, _id: 0 }
+//   );
+app.get('/squads', async (req,res) => {
+    try {
+        const squads = await Squad.find({});
+        res.json(squads)
+    } catch (err) {
+        res.status(500).json({error: err.message});
+    }
+});
