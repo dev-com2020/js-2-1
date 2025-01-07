@@ -88,11 +88,20 @@ app.get('/squads/power1', async (req,res) => {
         res.status(500).json({error: err.message});
     }
 });
-app.get('/squads/power/:power', async (req,res) => {
+app.get('/squads/by-power/:power', async (req,res) => {
     try {
         const power = req.params.power;
         const squads = await Squad.find({'members.powers': power},{ 'members.$': 1, _id: 0 });
         res.json(squads)
+    } catch (err) {
+        res.status(500).json({error: err.message});
+    }
+});
+app.delete('/squads/:id', async (req,res) => {
+    try {
+        const deleteSquad = await Squad.findByIdAndDelete(req.params.id)
+        if (!deleteSquad) return res.status(404).json({error: "Nie znaleziono"})
+        res.json(deleteSquad)
     } catch (err) {
         res.status(500).json({error: err.message});
     }
