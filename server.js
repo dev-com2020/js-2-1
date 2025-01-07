@@ -106,3 +106,15 @@ app.delete('/squads/:id', async (req,res) => {
         res.status(500).json({error: err.message});
     }
 });
+
+app.put('/squads/:id', async (req,res) => {
+    try {
+        const updateSquad = await Squad.findByIdAndUpdate(req.params.id, req.body, 
+            {new: true}
+        )
+        if (!updateSquad) return res.status(404).json({error: "Nie znaleziono"})
+        res.json(updateSquad)
+    } catch (err) {
+        res.status(400).json({error: err.message});
+    }
+});
