@@ -66,3 +66,25 @@ app.get('/squads', async (req,res) => {
         res.status(500).json({error: err.message});
     }
 });
+app.get('/squads/names', async (req,res) => {
+    try {
+        const squads = await Squad.find({},{ squadName: 1, _id: 0 });
+        res.json(squads)
+    } catch (err) {
+        res.status(500).json({error: err.message});
+    }
+});
+
+// db.getCollection('squads').find(
+//     { 'members.powers': 'Damage resistance' },
+//     { 'members.$': 1 }
+//   );
+app.get('/squads/power1', async (req,res) => {
+    try {
+        const power = req.params.power;
+        const squads = await Squad.find({'members.powers': 'Damage resistance'},{ 'members.$': 1, _id: 0 });
+        res.json(squads)
+    } catch (err) {
+        res.status(500).json({error: err.message});
+    }
+});
