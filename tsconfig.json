@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
-      "noEmit": true,
+      "target": "ES2020",
+      "noEmit": false,
       "lib": [
         "dom",
         "dom.iterable",
