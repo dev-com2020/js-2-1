@@ -1,4 +1,10 @@
-class Auto {
+interface Vehicle {
+    model: string
+    km: number
+    honk():void
+}
+
+class Auto implements Vehicle {
     model: string
     km: number
 
