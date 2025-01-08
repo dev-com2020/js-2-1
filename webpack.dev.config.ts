@@ -16,6 +16,7 @@ const config: Configuration = {
   mode: 'development',
   output: {
     publicPath: '/',
+    filename: 'bundle.js',
   },
   entry: './src/index.tsx',
   module: {
