@@ -1,20 +1,19 @@
 class Bank {
-    private balance: number
+    private _balance: number
 
     constructor(initBalance: number){
-        this.balance = initBalance
+        this._balance = initBalance
     }
 
-    public deposit(amount:number):void {
-        this.balance += amount
-        console.log(`Zdeponowano: ${amount}, nowy balans: ${this.balance}`)
+    set deposit(amount:number) {
+        this._balance += amount
+        console.log(`Zdeponowano: ${amount}, nowy balans: ${this._balance}`)
     }
 
-    public getBalance():number {
-        return this.balance
+    get salary():number {
+        return this._balance
     }
 }
 const account = new Bank(100)
-account.deposit(400)
-console.log(account.getBalance())
-// account.balance = 46738462872
+account.deposit = 400
+console.log(account.salary)
